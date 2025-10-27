@@ -1,0 +1,144 @@
+/* ============================
+   Layout – Alternativ 3 (ljus bakgrund)
+============================ */
+
+/* Allmän bakgrund */
+body {
+  background-color: #f5f5f5; /* ljusgrå */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #494e3a; /* mörkgrön/brun text */
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4c6963; /* ljusgrön/turkos */
+  padding: 10px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 150px;
+  margin-right: 20px;
+}
+
+/* Länkar i navbar */
+.navlink {
+  text-decoration: none;
+  color: #abb490; /* mörkgrön/brun */
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 50px;
+}
+
+.navlink:hover {
+  color: #FFFDE2; /* ljusgul vid hover */
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #FFFDE2; /* ljusgul */
+  min-width: 180px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #51583C; /* mörkgrön/brun */
+}
+
+.dropdown-content a:hover {
+  background-color: #A2D8C7; /* ljusgrön/turkos */
+  color: #FFFDE2; /* ljusgul text vid hover */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Separationslinje i dropdown */
+.dropdown-content hr {
+  border: 0;
+  border-top: 1px solid #51583C;
+  margin: 5px 0;
+}
+
+/* Knappar */
+button {
+  background-color: #51583C; /* mörkgrön/brun */
+  color: #FFFDE2; /* ljusgul text */
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #A2D8C7; /* ljusgrön/turkos vid hover */
+  color: #51583C; /* mörk text vid hover */
+}
+
+/* ============================
+   Innehållsblock – vit bakgrund
+============================ */
+
+.content-block {
+  background-color: #ffffff; /* vit bakgrund */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* Rubriker i innehållsblock */
+.content-block h1,
+.content-block h2,
+.content-block h3 {
+  margin-top: 0;
+  color: #494e3a; /* matchar textfärgen */
+}
+
+/* Stycke text */
+.content-block p {
+  line-height: 1.6;
+  color: #494e3a;
+}
+
+/* Listor */
+.content-block ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #494e3a;
+}
+
+.content-block li {
+  margin-bottom: 8px;
+}
