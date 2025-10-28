@@ -120,7 +120,6 @@ body {
 /* Kort / innehåll */
 .outer-card {
   margin: 28px 0 28px 60px;
-
 }
 
 .inner-card {
@@ -129,6 +128,9 @@ body {
   padding: 28px;
   margin-top: 16px;
   box-shadow: 0 6px 26px rgba(0,0,0,0.06);
+  display: flex;
+  flex-wrap: wrap; /* Gör flexen responsiv */
+  gap: 20px;
 }
 
 .rules-container,
@@ -144,6 +146,19 @@ body {
   box-shadow: 0 6px 26px rgba(0,0,0,0.06);
 }
 
+/* Flexbar inner-card-innehåll */
+.inner-card > div {
+  flex: 1 1 300px; /* Tar upp plats men krymper inte under 300px */
+  min-width: 300px;
+}
+
+/* Flex-widget (väder/facebook) */
+.weather-card,
+.facebook-card {
+  flex: 0 0 220px; /* widget har fast bredd men staplas på små skärmar */
+}
+
+/* Galleri */
 .gallery-grid {
   display: flex;
   flex-wrap: wrap;
@@ -235,6 +250,16 @@ footer { background: var(--footer); color: #fff; text-align:center; padding: 18p
 /* Hamburger (mobil) */
 .hamburger { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; }
 
+@media (max-width: 1024px) {
+  .inner-card {
+    flex-direction: column; /* staplar text + widget */
+  }
+  .weather-card, .facebook-card {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .rules-container,
   .contact-container,
@@ -287,7 +312,7 @@ footer { background: var(--footer); color: #fff; text-align:center; padding: 18p
 .weather-card {
   margin-top: 20px;
   padding: 15px;
-  background-color: #bebebe8a;
+  background-color: #d6f0f0cc; /* ljusare för att moln ska synas */
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
