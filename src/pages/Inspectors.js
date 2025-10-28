@@ -1,5 +1,5 @@
 import React from "react";
-import "./Rules.css";
+import "../Layout.css";
 
 const inspectors = [
   { name: "John Doe", lake: "Lugnet", phone: "070-123 45 67" },
@@ -9,9 +9,10 @@ const inspectors = [
 
 function Inspectors() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Tillsynsmän</h1>
-      <div className="rules-container text-break">
+    <div className="rules-container">
+      <div className="outer-card">
+        <h1>Tillsynsmän</h1>
+        <div className="inner-card">
         <ul style={{ listStyleType: "none", padding: 0 }}>
           {inspectors.map(ins => (
             <li
@@ -29,6 +30,7 @@ function Inspectors() {
           ))}
         </ul>
       </div>
+    </div>
     </div>
   );
 }

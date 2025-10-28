@@ -1,144 +1,304 @@
-/* ============================
-   Layout – Alternativ 3 (ljus bakgrund)
-============================ */
-
-/* Allmän bakgrund */
-body {
-  background-color: #f5f5f5; /* ljusgrå */
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #494e3a; /* mörkgrön/brun text */
+:root{
+  --bg: #f3f7f9;
+  --navbar: #4c6963; 
+  --accent: #83c5be;
+  --muted: #51583C;
+  --card-bg: #ffffffa2;
+  --text-dark: #1a1a1a;
+  --footer: #003049;
 }
 
-/* Navbar */
+/* Bas */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* NAVBAR */
 .navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: #4c6963; /* ljusgrön/turkos */
-  padding: 10px 30px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  align-items: center;
+  background-color: var(--navbar);
+  padding: 14px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
 }
 
 .navbar-left {
-  display: flex;
-  align-items: center;
+  display:flex;
+  align-items:center;
+  gap: 16px;
 }
+
+.logo { height: 150px; width: auto; display:block; }
 
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 26px;
 }
 
-.logo {
-  height: 150px;
-  margin-right: 20px;
-}
-
-/* Länkar i navbar */
 .navlink {
+  color: #d0dfdd;
   text-decoration: none;
-  color: #abb490; /* mörkgrön/brun */
-  font-weight: bold;
+  font-weight: 600;
   font-size: 28px;
-  line-height: 50px;
+  padding: 6px 8px;
+  transition: color 0.18s ease, transform 0.12s ease;
 }
 
-.navlink:hover {
-  color: #FFFDE2; /* ljusgul vid hover */
+.navlink:hover,
+.navlink.active {
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* Dropdown */
-.dropdown {
-  position: relative;
-  cursor: pointer;
-}
+.dropdown { position: relative; display: inline-block; cursor: pointer; }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #FFFDE2; /* ljusgul */
-  min-width: 180px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-  padding: 10px 0;
-  border-radius: 5px;
-  z-index: 100;
+  top: 100%;
+  left: 0;
+  background-color: var(--card-bg);
+  min-width: 150px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 0;
+  margin-top: 0;
+  z-index: 1200;
+  overflow: hidden;
 }
 
-.dropdown-content a {
+.dropdown-content a,
+.dropdown-content .navlink {
   display: block;
-  padding: 10px 20px;
-  font-size: 18px;
-  color: #51583C; /* mörkgrön/brun */
+  padding: 12px 16px;
+  font-size: 20px;
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 0;
+  white-space: nowrap;
 }
 
-.dropdown-content a:hover {
-  background-color: #A2D8C7; /* ljusgrön/turkos */
-  color: #FFFDE2; /* ljusgul text vid hover */
+.dropdown-content a:first-child:hover,
+.dropdown-content .navlink:first-child:hover {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: var(--accent);
+  color: #fff;
+}
+.dropdown-content a:last-child:hover,
+.dropdown-content .navlink:last-child:hover {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: var(--accent);
+  color: #fff;
+}
+.dropdown-content a:not(:first-child):not(:last-child):hover,
+.dropdown-content .navlink:not(:first-child):not(:last-child):hover {
+  background-color: var(--accent);
+  color: #fff;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown:hover .dropdown-content,
+.dropdown-content.active { display: block; }
+
+/* Kort / innehåll */
+.outer-card {
+  margin: 28px 0 28px 60px;
+
 }
 
-/* Separationslinje i dropdown */
-.dropdown-content hr {
-  border: 0;
-  border-top: 1px solid #51583C;
-  margin: 5px 0;
+.inner-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 16px;
+  box-shadow: 0 6px 26px rgba(0,0,0,0.06);
 }
 
-/* Knappar */
-button {
-  background-color: #51583C; /* mörkgrön/brun */
-  color: #FFFDE2; /* ljusgul text */
-  border: none;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
+.rules-container,
+.contact-container,
+.gallery-container,
+.about-container,
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 28px 0 28px 60px;
+  max-width: 1720px;
+  box-shadow: 0 6px 26px rgba(0,0,0,0.06);
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: 250px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.801);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 36px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #A2D8C7; /* ljusgrön/turkos vid hover */
-  color: #51583C; /* mörk text vid hover */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  font-size: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transform: translateY(-50%);
 }
 
-/* ============================
-   Innehållsblock – vit bakgrund
-============================ */
+.prev { left: 20px; }
+.next { right: 20px; }
 
-.content-block {
-  background-color: #ffffff; /* vit bakgrund */
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+/* Text & rubriker */
+h1, h2 { margin-left: 0px; }
+.rules-container h1, .rules-container h2,
+.card h1, .card h2,
+.about-container h1, .about-container h2,
+.gallery-container h1, .gallery-container h2 { 
+  margin: 0 0 14px 0; 
+  color: var(--muted); 
 }
 
-/* Rubriker i innehållsblock */
-.content-block h1,
-.content-block h2,
-.content-block h3 {
-  margin-top: 0;
-  color: #494e3a; /* matchar textfärgen */
+.rules-container ul,
+.rules-container ol,
+.card ul { padding-left: 20px; margin: 10px 0 0 0; }
+
+.text-break { word-wrap: break-word; overflow-wrap: break-word; white-space: normal; }
+
+footer { background: var(--footer); color: #fff; text-align:center; padding: 18px; font-size: 14px; }
+
+/* Hamburger (mobil) */
+.hamburger { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; }
+
+@media (max-width: 768px) {
+  .rules-container,
+  .contact-container,
+  .gallery-container,
+  .about-container,
+  .card, 
+  .outer-card, 
+  .inner-card { 
+    margin: 18px auto; 
+    padding: 18px; 
+  }
+  h1, h2 { margin-left:0; text-align:center; }
+
+  .navbar { padding: 10px 16px; }
+  .logo { height: 100px; }
+  .hamburger { display: block; }
+
+  .navbar-right { 
+    display: none;
+    flex-direction: column;
+    width: 220px;
+    gap: 8px;
+    padding: 12px 0;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    z-index: 1200;
+  }
+
+  .navbar-right.active { display: flex; }
+
+  .navbar-right .dropdown-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+    border-radius: 12px;
+  }
+
+  .navlink { font-size: 20px; color: var(--text-dark); }
+
+  .gallery-item { width: 45%; height: 140px; }
+  .prev, .next { font-size: 36px; }
 }
 
-/* Stycke text */
-.content-block p {
-  line-height: 1.6;
-  color: #494e3a;
+/*Väder */
+.weather-card {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #bebebe8a;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Listor */
-.content-block ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  color: #494e3a;
+.weather-card h3 {
+  margin-bottom: 10px;
+  color: #416e47;
+  font-weight: 700;
 }
 
-.content-block li {
-  margin-bottom: 8px;
+.weather-card p {
+  margin: 4px 0;
+  font-weight: 600;
 }

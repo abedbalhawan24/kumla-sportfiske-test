@@ -1,12 +1,20 @@
 import React from "react";
-import "./Rules.css";
+import "../Layout.css";
 
 function News() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Nyheter</h1>
-      <div className="rules-container text-break">
-        <p>Här hittar du alla nyheter från klubben.</p>
+    <div className="rules-container">
+      <div className="outer-card">
+        <h1>Nyheter</h1>
+
+        <div className="inner-card">
+          <h2 style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>Senaste uppdateringar och meddelanden från klubben.</h2>
+          <ul style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>
+            <li>Här kommer uppdateringar/event/nyheter finnas</li>
+            <li>Här kommer uppdateringar/event/nyheter finnas</li>
+            <li>Här kommer uppdateringar/event/nyheter finnas</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
