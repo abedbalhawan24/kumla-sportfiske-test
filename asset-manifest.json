@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/abedbalhawan24/Kumla-sportfiske.git/static/css/main.61e51ad0.css",
-    "main.js": "/abedbalhawan24/Kumla-sportfiske.git/static/js/main.a3f11084.js",
-    "static/media/bild3.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild3.54cc226eb2a16b5a78f2.jpg",
-    "static/media/bild8.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild8.22f3e484f78795c5a017.jpg",
-    "static/media/bild9.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild9.7d9520d5483733508342.jpg",
-    "static/media/bild1.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild1.5f7b08f6413a368851cf.jpg",
-    "static/media/bild5.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild5.e00f23f92fdfeb320d01.jpg",
-    "static/media/bild7.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild7.4eb2b2316fcd6d3932a3.jpg",
-    "static/media/bild4.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild4.997a5532898411971ee8.jpg",
-    "static/media/bild6.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild6.ef0334f798cba8c9d146.jpg",
-    "static/media/bild2.jpg": "/abedbalhawan24/Kumla-sportfiske.git/static/media/bild2.e5b67ba453efafb68867.jpg",
-    "static/media/logo.png": "/abedbalhawan24/Kumla-sportfiske.git/static/media/logo.71f5ce940c1988c999ce.png",
-    "index.html": "/abedbalhawan24/Kumla-sportfiske.git/index.html",
-    "main.61e51ad0.css.map": "/abedbalhawan24/Kumla-sportfiske.git/static/css/main.61e51ad0.css.map",
-    "main.a3f11084.js.map": "/abedbalhawan24/Kumla-sportfiske.git/static/js/main.a3f11084.js.map"
+    "main.css": "/abedbalhawan24/Kumla-sportfiske-test/static/css/main.61e51ad0.css",
+    "main.js": "/abedbalhawan24/Kumla-sportfiske-test/static/js/main.3c07dcb4.js",
+    "static/media/bild3.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild3.54cc226eb2a16b5a78f2.jpg",
+    "static/media/bild8.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild8.22f3e484f78795c5a017.jpg",
+    "static/media/bild9.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild9.7d9520d5483733508342.jpg",
+    "static/media/bild1.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild1.5f7b08f6413a368851cf.jpg",
+    "static/media/bild5.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild5.e00f23f92fdfeb320d01.jpg",
+    "static/media/bild7.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild7.4eb2b2316fcd6d3932a3.jpg",
+    "static/media/bild4.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild4.997a5532898411971ee8.jpg",
+    "static/media/bild6.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild6.ef0334f798cba8c9d146.jpg",
+    "static/media/bild2.jpg": "/abedbalhawan24/Kumla-sportfiske-test/static/media/bild2.e5b67ba453efafb68867.jpg",
+    "static/media/logo.png": "/abedbalhawan24/Kumla-sportfiske-test/static/media/logo.71f5ce940c1988c999ce.png",
+    "index.html": "/abedbalhawan24/Kumla-sportfiske-test/index.html",
+    "main.61e51ad0.css.map": "/abedbalhawan24/Kumla-sportfiske-test/static/css/main.61e51ad0.css.map",
+    "main.3c07dcb4.js.map": "/abedbalhawan24/Kumla-sportfiske-test/static/js/main.3c07dcb4.js.map"
   },
   "entrypoints": [
     "static/css/main.61e51ad0.css",
-    "static/js/main.a3f11084.js"
+    "static/js/main.3c07dcb4.js"
   ]
 }
