@@ -9,12 +9,16 @@ import News from "./pages/News";
 import Gallery from "./pages/Gallery";
 import Inspectors from "./pages/Inspectors";
 import About from "./pages/About";
+import Fangstrapport from "./pages/Fangstrapport";
+import Events from "./pages/Events";
+import BackToTop from "./components/BackToTop"; // Importera BackToTop
+import "./Layout.css"; // Säkerställ att Layout.css är importerad
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ padding: "20px", backgroundColor: "#FFFDE2", minHeight: "90vh" }}>
+      <div className="page-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rules" element={<Rules />} />
@@ -24,7 +28,11 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/inspectors" element={<Inspectors />} />
           <Route path="/about" element={<About />} />
+          <Route path="/fangstrapport" element={<Fangstrapport />} />
+          <Route path="/events" element={<Events />} />
         </Routes>
+        {/* Back to Top-knapp */}
+        <BackToTop />
       </div>
     </Router>
   );

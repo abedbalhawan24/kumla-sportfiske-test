@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../Layout.css";
 
-const API_KEY = "73d1ee267dfb5f9b6c25f3681eb3875f"; // <-- Din OpenWeatherMap API-nyckel
+const API_KEY = "73d1ee267dfb5f9b6c25f3681eb3875f";
 
 const lakes = [
   {
@@ -73,7 +73,6 @@ function Rules() {
       );
       const data = await res.json();
 
-      // Beräkna regnchans
       let rainChance = 0;
       if (data.pop) {
         rainChance = Math.round(data.pop * 100);
@@ -95,14 +94,13 @@ function Rules() {
       <div className="outer-card">
         <h1>{selectedLake ? selectedLake.name : "Välj sjö"}</h1>
 
-        {/** Gör inner-card till flex-container */}
         <div
           className="inner-card"
           style={{
             display: "flex",
             flexWrap: "wrap",
             gap: "20px",
-            alignItems: "flex-start"
+            alignItems: "stretch"  // kritiskt för widgets
           }}
         >
           {!selectedLake && (
@@ -141,41 +139,29 @@ function Rules() {
 
           {selectedLake && (
             <>
-              {/** Textinnehåll till höger */}
-              <div style={{ flex: 1, minWidth: "340px" }}>
+              {/* Textinnehåll */}
+              <div style={{ flex: "1 1 340px", minWidth: 0 }}>
+                <h2 style={{ fontWeight: 700, marginBottom: "16px" }}>
+                  Regler för {selectedLake.name}
+                </h2>
                 <ul>
-                  <h2 style={{ fontWeight: 700, marginBottom: "16px" }}>
-                    Regler för {selectedLake.name}
-                  </h2>
                   {selectedLake.rules.map((rule, index) => (
-                    <li
-                      key={index}
-                      style={{
-                        fontWeight: 600,
-                        wordWrap: "break-word",
-                        overflowWrap: "break-word",
-                        marginBottom: "8px"
-                      }}
-                    >
+                    <li key={index} style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>
                       {rule}
                     </li>
                   ))}
                 </ul>
-
-                <p
-                  style={{
-                    fontWeight: 700,
-                    wordWrap: "break-word",
-                    overflowWrap: "break-word",
-                    marginTop: "12px"
-                  }}
-                >
+                <p style={{ fontWeight: 700, wordWrap: "break-word", overflowWrap: "break-word", marginTop: "12px" }}>
                   Adress: {selectedLake.address}
                 </p>
               </div>
-              {/** Väderkort längst till vänster */}
+
+              {/* Väder-widget */}
               {weather && !loadingWeather && weather.weather && (
-                <div className="weather-card" style={{ minWidth: "300px" }}>
+                <div
+                  className="weather-card"
+                  style={{ flex: "1 1 280px", minWidth: 0, boxSizing: "border-box" }}
+                >
                   <h2 style={{ marginBottom: "10px", color: "#51583C" }}>
                     🌤 Väder just nu för {selectedLake.name}
                   </h2>
@@ -184,7 +170,7 @@ function Rules() {
                     alt="väderikon"
                     style={{ width: "150px", height: "150px" }}
                   />
-                  <p style={{ fontSize: "20x", fontWeight: 700, margin: "6px 0" }}>
+                  <p style={{ fontSize: "20px", fontWeight: 700, margin: "6px 0" }}>
                     {weather.weather[0].description}
                   </p>
                   <p style={{ fontSize: "16px", margin: "0" }}>Temp: {Math.round(weather.main.temp)}°C</p>

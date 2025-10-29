@@ -5,15 +5,11 @@ function Home() {
   useEffect(() => {
     if (!window.FB) {
       window.fbAsyncInit = function() {
-        window.FB.init({
-          xfbml: true,
-          version: "v16.0",
-        });
+        window.FB.init({ xfbml: true, version: "v16.0" });
       };
 
       ((d, s, id) => {
-        let js,
-          fjs = d.getElementsByTagName(s)[0];
+        let js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s);
         js.id = id;
@@ -27,27 +23,17 @@ function Home() {
 
   return (
     <div className="rules-container">
-      {/* Yttre kort med rubriker */}
       <div className="outer-card">
         <h1>Kumla Sportfiskeförening</h1>
 
-        {/* Inre kort med text och Facebook */}
-        <div
-          className="inner-card text-break"
-          style={{
-            display: "flex",
-            gap: "20px",
-            flexWrap: "wrap"
-          }}
-        >
-          
-          {/* Texten på vänster sida */}
-          <div style={{ flex: 1, minWidth: "300px", maxWidth: "720px" }}>
+        <div className="inner-card inner-card-content">
+          {/* Text */}
+          <div className="home-text">
             <h2>Välkommen!</h2>
-            <p style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word" }}>
+            <p>
               Kumla Sportfiskeförening och Säbylundssjön. <br /><br />
               Säbylundssjön är en lättillgänglig familjesjö. Spinn, mete, pimpel och flugfiske är tillåtet. Säbylundssjön är ett gammalt sandtag och har mycket bra vattenkvalitet och ett rikt insektsliv. <br /><br />
-              Som medlem har du ytterligare fiskemöjligheter. Där ingår våra två medlemssjöar, en väldigt trevlig skogssjö, Här finns både grillplats, bryggor och vindskydd.<br />
+              Som medlem har du ytterligare fiskemöjligheter. Där ingår våra två medlemssjöar, en väldigt trevlig skogssjö. Här finns både grillplats, bryggor och vindskydd.<br />
               Samt Lugnet som är en flugfiskesjö med inriktning på catch and release. Lugnet är även ett gammalt kalkbrott och kan stundtals ha ett väldigt klart vatten och ett trevligt kantnära fiske att bjuda på. Passar såväl nybörjaren som den erfarne flugfiskaren! <br /><br />
               Du har även 2st stenbrott där det finns gott om abborre. <br /><br />
               Mer information fås via välkomstmail som skickas ut till nya medlemmar!<br /><br />
@@ -56,8 +42,8 @@ function Home() {
             </p>
           </div>
 
-          {/* Facebook-div på höger sida med utrymme */}
-          <div style={{ flex: "0 0 340px", marginLeft: "auto" }}>
+          {/* Desktop Facebook-widget */}
+          <div className="desktop-facebook facebook-card">
             <div
               className="fb-page"
               data-href="https://www.facebook.com/KumlaSportfiske/"
@@ -70,6 +56,21 @@ function Home() {
               data-show-facepile="true"
             ></div>
           </div>
+        </div>
+
+        {/* Mobil Facebook-widget */}
+        <div className="mobile-facebook facebook-card">
+          <div
+            className="fb-page"
+            data-href="https://www.facebook.com/KumlaSportfiske/"
+            data-tabs="timeline"
+            data-width="340"
+            data-height=""
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="true"
+          ></div>
         </div>
       </div>
     </div>
