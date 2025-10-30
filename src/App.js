@@ -12,6 +12,8 @@ import About from "./pages/About";
 import Fangstrapport from "./pages/Fangstrapport";
 import Events from "./pages/Events";
 import BackToTop from "./components/BackToTop"; // Importera BackToTop
+import Footer from "./components/Footer"; 
+
 import "./Layout.css"; // Säkerställ att Layout.css är importerad
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
         </Routes>
         {/* Back to Top-knapp */}
         <BackToTop />
+        <Footer />
       </div>
     </Router>
   );

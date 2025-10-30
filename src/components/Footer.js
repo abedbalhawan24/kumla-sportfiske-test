@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
-function Footer() {
+export default function Footer() {
   return (
-    <div className="footer">
-      &copy; {new Date().getFullYear()} Kumla Sportfiske. Alla rättigheter förbehållna.
-    </div>
+    <footer>
+      © 2025 Kumla Sportfiske. Alla rättigheter reserverade.
+    </footer>
   );
 }
-
-export default Footer;

@@ -13,13 +13,12 @@ function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const hoverTimeouts = useRef({});
 
-  // Aktivera darkmode på body
   useEffect(() => {
     if (darkMode) document.body.classList.add("dark-mode");
     else document.body.classList.remove("dark-mode");
   }, [darkMode]);
 
-  // Stäng dropdown när man klickar utanför (mobil)
+  // Stäng dropdown vid klick utanför
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (window.innerWidth <= 1024) {
@@ -70,6 +69,11 @@ function Navbar() {
     setMobileDropdownOpen({ regler: false, kontakt: false, Nyheter: false });
   };
 
+  const handleMobileNavClick = (menu) => {
+    closeMobileMenu();
+    setMobileDropdownOpen((prev) => ({ ...prev, [menu]: false }));
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -85,7 +89,7 @@ function Navbar() {
           Startsida
         </NavLink>
 
-        {/* --- Våra sjöar --- */}
+        {/* Våra sjöar */}
         <div
           className="dropdown"
           onClick={() => toggleDropdown("regler")}
@@ -114,7 +118,7 @@ function Navbar() {
           </div>
         </div>
 
-        {/* --- Nyheter --- */}
+        {/* Nyheter */}
         <div
           className="dropdown"
           onClick={() => toggleDropdown("Nyheter")}
@@ -152,7 +156,7 @@ function Navbar() {
           iFiske
         </a>
 
-        {/* --- Kontakt --- */}
+        {/* Kontakt */}
         <div
           className="dropdown"
           onClick={() => toggleDropdown("kontakt")}
@@ -178,7 +182,7 @@ function Navbar() {
           </div>
         </div>
 
-        {/* --- Dark/Light Mode Toggle --- */}
+        {/* Dark/Light Mode Toggle */}
         <div
           className={`theme-toggle ${darkMode ? "dark" : ""}`}
           onClick={() => setDarkMode(!darkMode)}

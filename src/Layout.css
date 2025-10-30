@@ -6,7 +6,7 @@
   --muted: #51583C;
   --card-bg: #ffffff73;
   --text-dark: #1a1a1a;
-  --footer: #003049;
+  --footer: #4c696383;
   --calendar-bg: #ffffffa0;
 }
 
@@ -18,7 +18,7 @@ body.dark-mode {
   --muted: #b0b0b0;
   --card-bg: #4550507e; /* mörk kortbakgrund */
   --text-dark: #eceaea;
-  --footer: #1a2826;
+  --footer: #3650544b;
   --calendar-bg: #4b55557a;
 }
 
@@ -221,7 +221,13 @@ h1, h2 { margin-left: 0; }
 .card ul { padding-left: 20px; margin: 10px 0 0 0; }
 
 /* --- FOOTER --- */
-footer { background: var(--footer); color: #fff; text-align:center; padding: 18px; font-size: 14px; }
+footer { 
+  background: var(--footer); 
+  color: #fff; 
+  text-align:center; 
+  padding: 10px; 
+  font-size: 14px;
+}
 
 /* --- DARK/LIGHT SLIDER --- */
 .theme-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
@@ -417,4 +423,39 @@ body.dark-mode .dropdown-content a:hover {
 
 body.dark-mode .dropdown-content hr {
   border-top: 1px solid #555;
+}
+
+/* --- MOBIL-DROPDOWN DESIGN --- */
+@media (max-width: 1024px) {
+  .navbar-right .dropdown-content {
+    position: relative; /* så att den inte ligger absolut över innehållet */
+    top: 0;
+    left: 0;
+    margin: 4px 0 0 0;
+    box-shadow: none;
+    border-radius: 12px;
+    background-color: #e0f7fa;
+    padding: 8px 0;
+    max-height: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navbar-right .dropdown-content a {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #004d40;
+    display: block;
+  }
+
+  .navbar-right .dropdown-content a:hover {
+    background-color: #00796b;
+    color: #fff;
+  }
+
+  .navbar-right .dropdown-content hr {
+    border-top: 1px solid #004d40;
+    margin: 6px 0;
+    opacity: 0.3;
+  }
 }

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/kumla-sportfiske-test/static/css/main.889a070c.css",
-    "main.js": "/kumla-sportfiske-test/static/js/main.7d3fcfbf.js",
+    "main.css": "/kumla-sportfiske-test/static/css/main.2140a7c0.css",
+    "main.js": "/kumla-sportfiske-test/static/js/main.875ee01b.js",
     "static/media/bild3.jpg": "/kumla-sportfiske-test/static/media/bild3.54cc226eb2a16b5a78f2.jpg",
     "static/media/bild8.jpg": "/kumla-sportfiske-test/static/media/bild8.22f3e484f78795c5a017.jpg",
     "static/media/bild9.jpg": "/kumla-sportfiske-test/static/media/bild9.7d9520d5483733508342.jpg",
@@ -13,11 +13,11 @@
     "static/media/bild2.jpg": "/kumla-sportfiske-test/static/media/bild2.e5b67ba453efafb68867.jpg",
     "static/media/logo.png": "/kumla-sportfiske-test/static/media/logo.71f5ce940c1988c999ce.png",
     "index.html": "/kumla-sportfiske-test/index.html",
-    "main.889a070c.css.map": "/kumla-sportfiske-test/static/css/main.889a070c.css.map",
-    "main.7d3fcfbf.js.map": "/kumla-sportfiske-test/static/js/main.7d3fcfbf.js.map"
+    "main.2140a7c0.css.map": "/kumla-sportfiske-test/static/css/main.2140a7c0.css.map",
+    "main.875ee01b.js.map": "/kumla-sportfiske-test/static/js/main.875ee01b.js.map"
   },
   "entrypoints": [
-    "static/css/main.889a070c.css",
-    "static/js/main.7d3fcfbf.js"
+    "static/css/main.2140a7c0.css",
+    "static/js/main.875ee01b.js"
   ]
 }
