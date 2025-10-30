@@ -1,62 +1,49 @@
-import React from "react";
-import "../Layout.css"; // återanvänd Layout.css
+import React, { useState, useEffect } from "react";
+import "../Layout.css";
 
-const howToJoin = [
-  "Här kommer information om hur man blir medlem stå.",
-  "Här kommer information om hur man blir medlem stå.",
-  "Här kommer information om hur man blir medlem stå.",
-  "Här kommer information om hur man blir medlem stå.",
-  "Här kommer information om hur man blir medlem stå.",
-];
-
-const clubRules = [
-  "Här kommer regler för medlemmar stå.",
-  "Här kommer regler för medlemmar stå.",
-  "Här kommer regler för medlemmar stå.",
-  "Här kommer regler för medlemmar stå.",
-  "Här kommer regler för medlemmar stå.",
-];
-
-const membershipBenefits = [
-  "Här kommer förmåner för medlemmar att stå.",
-  "Här kommer förmåner för medlemmar att stå.",
-  "Här kommer förmåner för medlemmar att stå.",
-  "Här kommer förmåner för medlemmar att stå.",
-  "Här kommer förmåner för medlemmar att stå.",
-];
+// Importera JSON
+import howToJoinText from "../data/regler/howToJoinText.json";
+import clubRulesText from "../data/regler/clubRulesText.json";
+import membershipBenefitsText from "../data/regler/membershipBenefitsText.json";
 
 function ClubRules() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const renderText = () => (
+    <>
+      <ul>
+        <h2>Hur blir jag medlem?</h2>
+        {howToJoinText.paragraphs.map((p, i) => (
+          <li key={i} style={{ fontWeight: 600 }}>{p}</li>
+        ))}
+      </ul>
+      <ul>
+        <h2 style={{ marginTop: "20px" }}>Klubbregler</h2>
+        {clubRulesText.paragraphs.map((p, i) => (
+          <li key={i} style={{ fontWeight: 600 }}>{p}</li>
+        ))}
+      </ul>
+      <ul>
+        <h2 style={{ marginTop: "20px" }}>Vad ingår i medlemskapet?</h2>
+        {membershipBenefitsText.paragraphs.map((p, i) => (
+          <li key={i} style={{ fontWeight: 600 }}>{p}</li>
+        ))}
+      </ul>
+    </>
+  );
+
   return (
     <div className="rules-container">
       <div className="outer-card">
         <h1>Bli Medlem</h1>
-        <div className="inner-card">
-          <ul>
-            <h2>Hur blir jag medlem?</h2>
-            {howToJoin.map((rule, index) => (
-              <li key={index} style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>
-                {rule}
-              </li>
-            ))}
-          </ul>
-          <ul>
-            <h2 style={{ marginTop: "20px" }}>Klubbregler</h2>
-            {clubRules.map((rule, index) => (
-              <li key={index} style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>
-                {rule}
-              </li>
-            ))}
-          </ul>
-
-          <ul>
-            <h2 style={{ marginTop: "20px" }}>Vad ingår i medlemskapet?</h2>
-            {membershipBenefits.map((benefit, index) => (
-              <li key={index} style={{ fontWeight: 600, wordWrap: "break-word", overflowWrap: "break-word", marginBottom: "8px" }}>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {isMobile && renderText()}
+        {!isMobile && <div className="inner-card">{renderText()}</div>}
       </div>
     </div>
   );

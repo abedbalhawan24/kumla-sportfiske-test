@@ -1,25 +1,25 @@
 /* --- LIGHT MODE (default) --- */
 :root {
   --bg: #f3f7f9;
-  --navbar: #4c6963; 
+  --navbar: #4c6963;
   --accent: #83c5be;
   --muted: #51583C;
   --card-bg: #ffffff73;
   --text-dark: #1a1a1a;
   --footer: #003049;
-  --calendar-bg: #ffffffa0; /* ljus bakgrund för kalendern */
+  --calendar-bg: #ffffffa0;
 }
 
 /* --- DARK MODE --- */
 body.dark-mode {
-  --bg: #1e1e2e;
-  --navbar: #2c3e50;
-  --accent: #83c5be;
+  --bg: #1a2423; /* mörkare variant av light bg */
+  --navbar: #365054; /* mörkare navbar men liknande tonalitet */
+  --accent: #83c5be; 
   --muted: #b0b0b0;
-  --card-bg: #2a2a3a7a;
-  --text-dark: #e0e0e0;
-  --footer: #1a1a28;
-  --calendar-bg: #4b4b55; /* lite ljusare än inner-card i dark mode */
+  --card-bg: #4550507e; /* mörk kortbakgrund */
+  --text-dark: #eceaea;
+  --footer: #1a2826;
+  --calendar-bg: #4b55557a;
 }
 
 /* --- BAS --- */
@@ -34,6 +34,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 /* --- NAVBAR --- */
@@ -48,17 +49,14 @@ body {
   z-index: 1100;
   box-shadow: 0 3px 12px rgba(0,0,0,0.08);
 }
-
 .navbar-left { display:flex; align-items:center; gap:16px; }
 .logo { height: 150px; width: auto; display:block; }
-
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 16px;
   transition: all 0.3s ease-in-out;
 }
-
 .navlink {
   color: #d0dfdd;
   text-decoration: none;
@@ -67,7 +65,6 @@ body {
   padding: 6px 8px;
   transition: color 0.18s ease, transform 0.12s ease;
 }
-
 .navlink:hover,
 .navlink.active {
   color: var(--accent);
@@ -76,7 +73,6 @@ body {
 
 /* --- DROPDOWN --- */
 .dropdown { position: relative; display: inline-block; cursor: pointer; }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -91,7 +87,6 @@ body {
   z-index: 1200;
   overflow: hidden;
 }
-
 .dropdown-content a,
 .dropdown-content .navlink {
   display: block;
@@ -103,53 +98,35 @@ body {
   border-radius: 0;
   white-space: nowrap;
 }
-
 .dropdown-content a:hover,
 .dropdown-content .navlink:hover {
   background-color: var(--accent);
   color: #fff;
 }
-
 .dropdown:hover .dropdown-content,
 .dropdown-content.active { display: block; }
 
+/* --- HAMBURGER --- */
+.hamburger { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; }
+
 /* --- KORT / INNEHÅLL --- */
-.outer-card { margin: 28px 0 28px 60px; }
+.outer-card { margin: 28px auto; max-width: 1720px; width: 100%; padding: 0 20px; }
+.inner-card { background: var(--card-bg); border-radius: 12px; padding: 28px; margin-top: 16px; box-shadow: 0 6px 26px rgba(0,0,0,0.06); overflow: hidden; }
+.inner-card-content { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
 
-.inner-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 28px;
-  margin-top: 16px;
-  box-shadow: 0 6px 26px rgba(0,0,0,0.06);
-  overflow: visible;
-}
-
-.inner-card-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-  overflow: visible;
-}
-
-/* --- KALENDER INNE I INNER-CARD --- */
-.inner-card .calendar-container {
-  background-color: var(--calendar-bg);
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.05);
-}
-
-/* --- TEXT --- */
+/* --- HOME PAGE TEXT --- */
 .home-text {
-  flex: 0 0 auto;
-  max-width: 600px;
+  flex: 1 1 600px;
+  min-width: 280px;
+  max-width: 650px;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  word-break: break-word;
   white-space: normal;
+  text-align: left;
   font-weight: 600;
 }
+.home-text strong { font-weight: 600; }
 
 /* --- WIDGETS --- */
 .weather-card,
@@ -157,11 +134,13 @@ body {
   flex: 0 0 340px;
   min-width: 280px;
   max-width: 340px;
+  width: 100%;
   box-sizing: border-box;
 }
-
-.desktop-facebook { margin-left: auto; }
-.mobile-facebook { display: none; }
+.desktop-facebook { margin-left: auto; max-width: 100%; overflow: hidden; text-align: center; }
+.desktop-facebook .fb-page,
+.mobile-facebook .fb-page { max-width: 100% !important; }
+.mobile-facebook { display: none; text-align: center; max-width: 100%; margin-top: 20px; }
 
 /* --- SIDOR --- */
 .rules-container,
@@ -175,11 +154,11 @@ body {
   margin: 28px auto;
   max-width: 1720px;
   box-shadow: 0 6px 26px rgba(0,0,0,0.06);
+  overflow: hidden;
 }
 
 /* --- GALLERI --- */
 .gallery-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-
 .gallery-item { width: 250px; height: 180px; overflow: hidden; border-radius: 8px; cursor: pointer; position: relative; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
 .gallery-item:hover img { transform: scale(1.05); }
@@ -197,19 +176,24 @@ body {
   justify-content: center;
   z-index: 2000;
 }
-
-.lightbox-content { 
-  max-width: 90%; 
-  max-height: 80%; 
-  border-radius: 8px; 
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
   background: var(--card-bg);
   padding: 24px;
   text-align: center;
 }
-
-.close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 36px; cursor: pointer; }
-
-.prev, .next {
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+}
+.prev,
+.next {
   position: absolute;
   top: 50%;
   color: #fff;
@@ -219,13 +203,11 @@ body {
   cursor: pointer;
   transform: translateY(-50%);
 }
-
-.prev { left: 5px; }  /* mindre gap mot titel */
-.next { right: 5px; } /* mindre gap mot titel */
+.prev { left: 5px; }
+.next { right: 5px; }
 
 /* --- TEXT & RUBRIKER --- */
-h1, h2 { margin-left: 0px; }
-
+h1, h2 { margin-left: 0; }
 .rules-container h1, .rules-container h2,
 .card h1, .card h2,
 .about-container h1, .about-container h2,
@@ -234,7 +216,6 @@ h1, h2 { margin-left: 0px; }
   margin: 0 0 14px 0; 
   color: var(--muted); 
 }
-
 .rules-container ul,
 .rules-container ol,
 .card ul { padding-left: 20px; margin: 10px 0 0 0; }
@@ -242,122 +223,19 @@ h1, h2 { margin-left: 0px; }
 /* --- FOOTER --- */
 footer { background: var(--footer); color: #fff; text-align:center; padding: 18px; font-size: 14px; }
 
-/* --- HAMBURGER --- */
-.hamburger { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; }
-
 /* --- DARK/LIGHT SLIDER --- */
 .theme-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 .theme-toggle span { font-size: 18px; }
-
-.theme-toggle .slider-container {
-  position: relative;
-  width: 50px;
-  height: 24px;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.theme-toggle .slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background-color: var(--accent);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
+.theme-toggle .slider-container { position: relative; width: 50px; height: 24px; background-color: var(--card-bg); border-radius: 12px; flex-shrink: 0; }
+.theme-toggle .slider { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background-color: var(--accent); border-radius: 50%; transition: all 0.3s ease; }
 .theme-toggle.dark .slider { transform: translateX(26px); }
-
-/* --- EVENEMANG / FULLCALENDAR --- */
-.events-container {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 28px;
-  margin: 28px auto;
-  max-width: 1000px;
-  box-shadow: 0 6px 26px rgba(0,0,0,0.06);
-}
-
-.events-wrapper { width: 100%; margin: 0 auto; }
-
-.fc { font-family: "Inter", "Segoe UI", Arial, sans-serif; }
-.fc .fc-toolbar-title { display: inline-block; margin: 0 10px; font-size: 1.5rem; font-weight: 600; }
-.fc .fc-toolbar .fc-left,
-.fc .fc-toolbar .fc-right { display: flex; align-items: center; gap: 5px; } /* justerat gap mellan pilar och titel */
-.fc .fc-button { background-color: var(--accent); color: #ffffff; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
-.fc .fc-button:hover { background-color: #5ea9a1; }
-.fc .fc-daygrid-event, .fc .fc-timegrid-event {
-  background-color: var(--accent);
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-/* --- LIGHTBOX FÖR EVENTS --- */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.lightbox-content {
-  background: var(--card-bg);
-  padding: 24px;
-  border-radius: 12px;
-  max-width: 500px;
-  text-align: center;
-}
-
-.lightbox-content h3 { margin-bottom: 12px; }
-.lightbox-content p { margin-bottom: 10px; }
-
-.lightbox-content button {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.lightbox-content button:hover { background: #5ea9a1; }
 
 /* --- RESPONSIV --- */
 @media (max-width: 1024px) {
-  .inner-card-content { flex-direction: column; align-items: stretch; }
-  .weather-card { width: 100%; margin-top: 16px; max-width: 100%; }
-  .events-container { padding: 20px; margin: 20px auto; }
-}
-
-@media (max-width: 768px) {
-  .rules-container,
-  .contact-container,
-  .gallery-container,
-  .about-container,
-  .card, 
-  .outer-card, 
-  .inner-card { margin: 18px auto; padding: 18px; }
-
-  h1, h2 { margin-left:0; text-align:center; }
-
-  .navbar { padding: 10px 16px; }
-  .logo { height: 100px; }
   .hamburger { display: block; }
-
-  .navbar-right { 
-    display: none;
+  .navbar-right { display: none; }
+  .navbar-right.active {
+    display: flex;
     flex-direction: column;
     width: 220px;
     gap: 8px;
@@ -371,25 +249,172 @@ footer { background: var(--footer); color: #fff; text-align:center; padding: 18p
     z-index: 1200;
   }
 
-  .navbar-right.active { display: flex; }
-  .navbar-right .dropdown-content { position: relative; top: 0; left: 0; box-shadow: none; border-radius: 12px; }
+  .desktop-facebook { display: none !important; }
+  .inner-card-content { flex-direction: column; align-items: stretch; }
+  .weather-card { width: 100%; margin-top: 16px; max-width: 100%; }
+  .events-container { padding: 20px; margin: 20px auto; }
+  .mobile-facebook { display: block; }
+}
 
+@media (max-width: 768px) {
+  .rules-container,
+  .contact-container,
+  .gallery-container,
+  .about-container,
+  .card,
+  .outer-card { margin: 18px auto; padding: 18px; }
+  h1, h2 { text-align:left; }
+  .navbar { padding: 10px 16px; }
+  .logo { height: 100px; }
   .navlink { font-size: 16px; color: var(--text-dark); }
-
   .gallery-item { width: 45%; height: 140px; }
   .prev, .next { font-size: 36px; }
-
   .inner-card-content > * { flex: 1 1 100%; min-width: auto; }
 }
 
 @media (max-width: 480px) {
   .gallery-item { width: 100%; height: 140px; }
-  h1, h2 { font-size: 1.5rem; text-align: center; }
+  h1, h2 { font-size: 1.5rem; text-align: left; }
 }
 
-/* Wrapper för hela sidan */
-.page-wrapper {
-  padding: 20px;
-  min-height: 90vh;
-  background-color: var(--bg);
+/* --- WRAPPER --- */
+.page-wrapper { padding: 20px; min-height: 90vh; background-color: var(--bg); }
+
+/* --- FULLCALENDAR KNAPPAR --- */
+.fc-toolbar-title { display: inline-block; margin: 0 10px; }
+.fc-toolbar .fc-button-prev { order: -1; margin-right: 10px; }
+.fc-toolbar .fc-button-next { order: 1; margin-left: 10px; }
+
+.fc-toolbar .fc-button {
+  background-color: var(--navbar);
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.fc-toolbar .fc-button:hover,
+.fc-toolbar .fc-button:focus,
+.fc-toolbar .fc-button.fc-button-active {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.fc-toolbar-chunk:last-child { margin-left: auto; }
+
+/* --- FULLCALENDAR EVENTS --- */
+.fc-event {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.fc-event:hover {
+  background-color: #6aa8a1; /* något mörkare */
+  transform: scale(1.03);
+}
+
+.fc-event.fc-event-selected {
+  background-color: var(--accent);
+}
+
+/* Inspectors list */
+.inspectors-list { 
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+.inspector-item {
+  background-color: #f0f8ff; /* Light mode bakgrund */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  color: var(--text-dark);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.inspector-item:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* Dark mode */
+body.dark-mode .inspector-item {
+  background-color: #2b2f38; /* matchar dark-mode kortfärg */
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+
+body.dark-mode .inspector-item:hover {
+  background-color: #83c5be; /* accent i dark mode */
+  color: #1a1c24; /* mörk text på accent */
+}
+
+/* === DROPDOWN ANIMATIONER === */
+
+/* Grundlayout */
+.dropdown-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* När aktiv */
+.dropdown-content.active {
+  opacity: 1;
+  max-height: 500px; /* tillräckligt stort för allt innehåll */
+  transform: translateY(0);
+}
+
+/* Animation för länkar */
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover-effekt för länkar */
+.dropdown-content a:hover {
+  background-color: var(--hover-bg);
+  color: var(--accent-color);
+}
+
+/* Separatorer i dropdowns */
+.dropdown-content hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 6px 0;
+  opacity: 0.5;
+}
+
+/* === DARK MODE ANPASSNING === */
+body.dark-mode .dropdown-content {
+  background-color: #2c2f33;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dropdown-content a {
+  color: #f0f0f0;
+}
+
+body.dark-mode .dropdown-content a:hover {
+  background-color: #3a3d42;
+  color: #7cc4ff;
+}
+
+body.dark-mode .dropdown-content hr {
+  border-top: 1px solid #555;
 }

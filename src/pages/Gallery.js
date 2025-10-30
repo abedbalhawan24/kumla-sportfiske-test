@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Layout.css";
 
 // Importera alla bilder från assets/gallery
@@ -7,22 +7,28 @@ const images = importAll(require.context("../assets/gallery", false, /\.(png|jpe
 
 function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
-  const openLightbox = (index) => {
-    setLightboxIndex(index);
-  };
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const closeLightbox = () => {
-    setLightboxIndex(null);
-  };
+  const openLightbox = (index) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+  const prevImage = () => setLightboxIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const nextImage = () => setLightboxIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
-  const prevImage = () => {
-    setLightboxIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const nextImage = () => {
-    setLightboxIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  const renderGallery = () => (
+    <div className="gallery-grid">
+      {images.map((img, index) => (
+        <div key={index} className="gallery-item" onClick={() => openLightbox(index)}>
+          <img src={img} alt={`Galleri ${index + 1}`} />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="gallery-container">
@@ -30,15 +36,7 @@ function Gallery() {
         <h1>Galleri</h1>
         <h2>Bilder från våra medlemmar</h2>
 
-        <div className="inner-card">
-          <div className="gallery-grid">
-            {images.map((img, index) => (
-              <div key={index} className="gallery-item" onClick={() => openLightbox(index)}>
-                <img src={img} alt={`Galleri ${index + 1}`} />
-              </div>
-            ))}
-          </div>
-        </div>
+        {isMobile ? renderGallery() : <div className="inner-card">{renderGallery()}</div>}
       </div>
 
       {lightboxIndex !== null && (

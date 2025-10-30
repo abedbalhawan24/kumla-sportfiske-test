@@ -3,14 +3,20 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import eventsData from "../assets/events.json";
+import eventsData from "../data/nyheter/events.json";
+import "../Layout.css";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
     setEvents(eventsData);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleEventClick = (info) => {
@@ -31,17 +37,13 @@ const Events = () => {
     return `${d.toLocaleDateString()} ${hours}:${minutes}`;
   };
 
-  const upcomingEvents = events
-    .filter((e) => new Date(e.start) >= new Date())
-    .sort((a, b) => new Date(a.start) - new Date(b.start))
-    .slice(0, 5);
-
   return (
     <div className="rules-container">
-    <div className="outer-card">
-      <h1>Kommande Evenemang</h1>
-          <div className="inner-card">
-        <div className="calendar-container" style={{ width: "100%" }}>
+      <div className="outer-card">
+        <h1>Kommande Evenemang</h1>
+
+        {/* Mobil: rendera kalender i fullbredd */}
+        <div className={isMobile ? "" : "inner-card"}>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
@@ -52,36 +54,44 @@ const Events = () => {
               center: "",
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
-            eventTimeFormat={{
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
+            buttonText={{
+              dayGridMonth: "Månad",
+              timeGridWeek: "Vecka",
+              timeGridDay: "Dag",
             }}
+            eventTimeFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
             height="auto"
             contentHeight="auto"
-            aspectRatio={1.35} // gör kalendern bredare
+            aspectRatio={isMobile ? 0.7 : 1.35}
+            dayCellDidMount={(info) => {
+              const dateStr = info.date.toISOString().split("T")[0];
+              if (events.some((e) => e.start.startsWith(dateStr))) {
+                info.el.style.backgroundColor = "#dff0d8";
+                info.el.style.borderRadius = "6px";
+              }
+            }}
           />
         </div>
-      </div>
 
-      {selectedEvent && (
-        <div className="lightbox" onClick={closePopup}>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <h3>{selectedEvent.title}</h3>
-            <p>
-              <strong>Start:</strong> {formatDateTime(selectedEvent.start)}
-            </p>
-            {selectedEvent.end && (
+        {/* Popup för event */}
+        {selectedEvent && (
+          <div className="lightbox" onClick={closePopup}>
+            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <h3>{selectedEvent.title}</h3>
               <p>
-                <strong>Slut:</strong> {formatDateTime(selectedEvent.end)}
+                <strong>Start:</strong> {formatDateTime(selectedEvent.start)}
               </p>
-            )}
-            {selectedEvent.description && <p>{selectedEvent.description}</p>}
-            <button onClick={closePopup}>Stäng</button>
+              {selectedEvent.end && (
+                <p>
+                  <strong>Slut:</strong> {formatDateTime(selectedEvent.end)}
+                </p>
+              )}
+              {selectedEvent.description && <p>{selectedEvent.description}</p>}
+              <button onClick={closePopup}>Stäng</button>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 };
