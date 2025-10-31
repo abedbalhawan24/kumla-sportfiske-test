@@ -12,27 +12,7 @@ function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Facebook SDK
-  useEffect(() => {
-    if (!window.FB) {
-      window.fbAsyncInit = function () {
-        window.FB.init({ xfbml: true, version: "v16.0" });
-      };
-      ((d, s, id) => {
-        let js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/sv_SE/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    } else {
-      // Tvinga parse direkt när komponenten mountas
-      window.FB.XFBML.parse();
-    }
-  }, [isMobile]); // Lägg till isMobile så att widget parse:as på mobil/desktopen
-
+  // --- Render text ---
   const renderText = () => (
     <div className="home-text">
       <h1>Kumla Sportfiskeförening</h1>
@@ -45,21 +25,30 @@ function Home() {
     </div>
   );
 
-  const renderFacebook = (desktop = true) => (
-    <div className={desktop ? "desktop-facebook facebook-card" : "mobile-facebook facebook-card"}>
-      <div
-        className="fb-page"
-        data-href="https://www.facebook.com/KumlaSportfiske/"
-        data-tabs="timeline"
-        data-width={desktop ? "340" : ""}
-        data-height=""
-        data-small-header="false"
-        data-adapt-container-width="true"
-        data-hide-cover="false"
-        data-show-facepile="true"
-      ></div>
-    </div>
-  );
+  // --- Render Facebook iframe ---
+  const renderFacebookIframe = (desktop = true) => {
+    const width = desktop ? 340 : 300;
+    const height = 500;
+    const src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
+      "https://www.facebook.com/KumlaSportfiske/"
+    )}&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
+
+    return (
+      <div className={desktop ? "desktop-facebook facebook-card" : "mobile-facebook facebook-card"}>
+        <iframe
+          title="Kumla Sportfiske Facebook"
+          src={src}
+          width={width}
+          height={height}
+          style={{ border: "none", overflow: "hidden" }}
+          scrolling="no"
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          allowFullScreen={true}
+        ></iframe>
+      </div>
+    );
+  };
 
   return (
     <div className="rules-container">
@@ -67,13 +56,13 @@ function Home() {
         {isMobile ? (
           <>
             {renderText()}
-            {renderFacebook(false)}
+            {renderFacebookIframe(false)}
           </>
         ) : (
           <div className="inner-card inner-card-desktop">
             <div className="inner-card-content">
               {renderText()}
-              {renderFacebook(true)}
+              {renderFacebookIframe(true)}
             </div>
           </div>
         )}
